@@ -1,0 +1,89 @@
+insert html
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert</title>
+</head>
+<body>
+<form action="insert" method="post">
+<label>Enter id</label>
+<input type="text" name="ID"><br><br>
+<label>Enter type</label>
+<input type="text" name="typ"><br><br>
+<label>Enter carat</label>
+<input type="text" name="cart"><br><br>
+<label>Enter price</label>
+<input type="text" name="paisa"><br><br>
+<input type="submit" value="insert">
+</form>
+</body>
+</html>
+----------------------------------
+
+
+insert servlet
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/insert")
+public class insert extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+    public insert() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		try {
+			String san=("insert into jewell (jewell_id,jewell_type,jewell_carat,price) values (?,?,?,?)");
+			
+			String id,type,carat,price;;
+			id=request.getParameter("ID");
+			type=request.getParameter("typ");
+			carat=request.getParameter("cart");
+		   price=request.getParameter("paisa");
+			 Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/jewellery", "root","root");
+			PreparedStatement st = con.prepareStatement(san);
+			st.setString(1, id);
+			st.setString(2, type);
+			st.setString(3, carat);
+			st.setString(4, price);
+			int count=st.executeUpdate();
+			if(count>0) {
+				pw.println("Data Inserted");
+			}else {
+				pw.println("Error");
+			}
+	        
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+
+}

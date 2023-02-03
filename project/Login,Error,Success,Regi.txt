@@ -1,0 +1,148 @@
+Login page
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<center><h1 style="color: red">Logging Page</h1></center>
+<form action="fetch" method="post" style="text-align: center;">
+<label>Enter Your User Name</label>
+<input type="text" name="u_name"><br><br>
+<label>Enter Your User Password</label>
+<input type="password" name="u_pass"><br><br>
+<input type="submit" value="SUBMIT"><br><br>
+<input type="reset" value="Clear">
+</form>
+</body>
+</html>
+
+
+---------------------------
+
+
+Pass error
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<center><h1>Error</h1></center>
+<img alt="failed" src="failed.jpg">
+</body>
+</html>
+------------------------------------
+
+Login success
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Catlog</title>
+</head>
+<body>
+<center><h1 style="color:maroon;">Welcome To My Jewellery Shop</h1></center>
+<h3>There Are 5 Type Of Jewellery : </h3>
+<div>
+<b>1 :</b>
+<img alt="neckles" src="neckles.jpg" height="80px" width="80px">
+<form action="search" method="post">
+Enter your id   <input type="text" name="neck">
+<input type="submit" value="Search">
+</form>
+</div>
+<div>
+<b>2 :</b>
+<img alt="ring" src="ring.jpg" height="80px" width="80px">
+<form action="search" method="post">
+Enter your id   <input type="text" name="ring">
+<input type="submit" value="Search">
+</form>
+</div>
+<div>
+<b>3 :</b>
+<img alt="earing" src="earing.jpg" height="80px" width="80px">
+<form action="search" method="post">
+Enter your id   <input type="text" name="earing">
+<input type="submit" value="Search">
+</form>
+</div>
+<div>
+<b>4 :</b>
+<img alt="diamond" src="diamond.jpg" height="80px" width="80px">
+<form action="search" method="post">
+Enter your id   <input type="text" name="diamond">
+<input type="submit" value="Search">
+</form>
+</div>
+<div>
+<b>5 :</b>
+<img alt="gold" src="gold.jpg" height="80px" width="80px">
+<form action="search" method="post">
+Enter your id   <input type="text" name="gold">
+<input type="submit" value="Search">
+</form>
+</div>
+<h3>Search Here Select Above ID </h3>
+
+
+<nav>
+<a href="insert.html"><button>insert</button></a>
+<a href="update.jsp"><button>update</button></a>
+<a href=""><button>delete</button></a>
+</nav>
+
+
+</body>
+</html>
+-----------------------------------------------------
+
+registration
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 style="text-align: center;">welcome</h1>
+<fieldset>
+<legend><b>Welcome To My Jewellery Shop</b></legend>
+<label><b>Enter your Name : </b></label>
+<input size="50px" type="text" name="name"><br><br>
+<label><b>Enter your Contact No. : </b></label>
+<input type="number" name="num"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<label><b>Enter your Email :</b> </label>
+<input type="email" name="email"><br><br>
+<label><b>Enter your D.O.B : </b></label>
+<input type="date" name="dob"><br><br>
+<label><b>Enter your Gender :</b> </label>Male <input type="radio"> female<input type="radio"><br><br>
+<label><b>Types Of Jewellery : </b></label>
+<select>
+<option>Neckles</option>
+<option>Ring</option>
+<option>Earing</option>
+<option>Diamond</option>
+<option>Gold</option>
+</select><br><br>
+<label><b>Types Of Carat :</b> </label><br>
+24 carat <input type="radio" name="a"><br>22 carat<input type="radio" name="a"><br>20 carat<input type="radio" name="a"><br><br>
+<label> <b> Range : </b></label><br>
+25000<input type="radio" name="money"><br>30000<input type="radio" name="money"><br>40000<input type="radio" name="money"><br>50000<input type="radio" name="money"><br><br>
+<center><a href="login.html"><button >SUBMIT</button></a></center>
+</fieldset>
+</body>
+</html>

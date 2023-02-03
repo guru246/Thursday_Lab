@@ -1,0 +1,59 @@
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
+/**
+ * Servlet implementation class search
+ */
+@WebServlet("/search")
+public class search extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public search() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		try {
+			String san=("select * from jewell where jewell_id=?");
+			int id1,id2,id3,id4,id5;
+			id1=Integer.parseInt(request.getParameter("neck"));
+			
+
+		     Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/jewellery", "root","root");
+			PreparedStatement st = con.prepareStatement(san);
+			st.setInt(1, id1);
+			
+	        ResultSet rs=st.executeQuery();
+	        pw.print("Jewellery_ID     \t    Jewellery_Type\t jewellery_carat\t jewellery_price : ");
+			while(rs.next()) {
+		pw.println(rs.getInt(1)+"\t"+rs.getString(2)+"\t"+rs.getInt(3)+"\t"+rs.getInt(4));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

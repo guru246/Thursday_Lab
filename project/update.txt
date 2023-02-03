@@ -1,0 +1,98 @@
+update html
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="update" method="post">
+
+<label>Enter type</label>
+<input type="text" name="typ"><br><br>
+<label>Enter carat</label>
+<input type="text" name="cart"><br><br>
+<label>Enter price</label>
+<input type="text" name="paisa"><br><br>
+<label>Enter id</label>
+<input type="text" name="ID"><br><br>
+<input type="submit" value="update">
+</form>
+</body>
+</html>
+
+
+----------------------------------------------------
+update servlet
+
+
+
+
+
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/update")
+public class update extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+    public update() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		try {
+			String qur=("update jewell set jewell_type=?,jewell_carat=?,price=? where jewell_id=?");
+			String id,type,carat,price;
+		
+			type=request.getParameter("typ");
+			carat=request.getParameter("cart");
+		   price=request.getParameter("paisa");
+			id=request.getParameter("ID");
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jewellery", "root", "root");
+			PreparedStatement st = con.prepareStatement(qur);
+		
+			st.setString(1, type);
+			st.setString(2, carat);
+			st.setString(3, price);
+			st.setString(4, id);
+			int count=st.executeUpdate();
+			if(count>0) {
+				pw.println("upadted");
+			}
+			else {
+				pw.println("Error");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	}
+

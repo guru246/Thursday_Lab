@@ -1,0 +1,82 @@
+delete html code 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="delete" method="post">
+
+<label>Enter id</label>
+<input type="text" name="ID"><br><br>
+<input type="submit" value="Delete">
+</form>
+</body>
+</html>
+-------------------------------------------------------------------
+
+
+
+delete servlet code
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class delete
+ */
+@WebServlet("/delete")
+public class delete extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public delete() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();	
+		try {
+			String qur=("delete from jewell where jewell_id=?");
+			String id ;
+			id=request.getParameter("ID");
+			
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jewellery", "root", "root");
+			PreparedStatement st = con.prepareStatement(qur);
+		    st.setString(1, id);
+		    int count =st.executeUpdate();
+		    if(count>0) {
+		    	pw.println("Data has been deleted");
+		    }else {
+		    	pw.println("error");
+		    	
+	}} 
+		    catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+
+	
+	}
+}
